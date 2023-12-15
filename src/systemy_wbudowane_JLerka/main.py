@@ -13,8 +13,17 @@ mainWindow=ttk.Window(themename='darkly')
 mainWindow.title("Systemy Wbudowane robot app")
 mainWindow.geometry("600x400")
 
+bd_addr = "F4:BC:DA:03:D4:CA"
+           #E6:61:64:07:E3:06:5C:29 #In theory adres MAC karty sieciowej z tego robota.. kinda susge
+server_sock= None
+port=0
+
+#Connection is to a client, not sure how to make the Raspberry as server honestly
 def connectToDevice():
-    bluetooth.BluetoothSocket
+    global server_sock, port
+    server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+    port = bluetooth.get_available_port( bluetooth.RFCOMM )
+    server_sock.connect((bd_addr, port))
 
 #Adres MAC JBL Tune100BT - F4:BC:DA:03:D4:CA
 
